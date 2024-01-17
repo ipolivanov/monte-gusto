@@ -10,3 +10,10 @@ function func() {
 	var element = document.getElementById('frame');
 	html2pdf().set(opt).from(element).save();
 }
+
+//self executing function here
+(function() {
+	 // your page initialization code here
+	 // the DOM will be available here
+	 console.log("dsfgsdfgsdgfsdgf");
+})();
