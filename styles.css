@@ -41,6 +41,12 @@ body {
 	font-family: "Regular";
 }
 
+[contenteditable="true"] {
+	/*display: inline;*/
+/*	width: auto;*/
+	min-width: 10px;
+}
+
 .frame {
 	position: relative;
 	font-size: 3.8px;
