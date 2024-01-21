@@ -51,6 +51,8 @@ function func() {
   			$(`[field=${field}]`).html(menu[field].replaceAll("\n", "<br>")).attr('rid',recordId);
   			// console.log(field);
   		}
+
+  		$(".loading").fadeOut()
   		// console.log(menu);
   	})
   	.catch(error => console.error(error));
