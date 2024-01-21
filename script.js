@@ -15,31 +15,48 @@ function func() {
 (function() {
 	// your page initialization code here
 	// the DOM will be available here
-	console.log("пsdfsdf45");
-
-	fetch('https://api.airtable.com/v0/appnTVLyPM29dB1vj/speisenkarte', {
-    headers: {
-       'Authorization': 'Bearer patFUFr7uNl41NiL0.93a8c0fca63abf0e43781b5347276ca4d9d7ab060030e64f7349176bdd619809'
-    }
-  })
-  .then(response => response.json())
-  .then(data => {
-  	// console.log(data.records);
-  	let menu = data.records.find(el => el.fields.id === "1")?.fields;
-  	let recordId = data.records.find(el => el.fields.id === "1")?.id;
-
-  	for ( field in menu ) {
-  		if ( field === "id" ) continue;
-  		$(`[field=${field}]`).html(menu[field].replaceAll("\n", "<br>")).attr('rid',recordId);
-  		// console.log(field);
-  	}
-  	// console.log(menu);
-  })
-  .catch(error => console.error(error));
+	
 
 
   // on webpage loaded function
   window.onload = function() {
+
+
+
+  	console.log("Loading");
+  	// get menu id from the url string
+  	let url = new URL(window.location.href);
+  	let menuId = url.searchParams.get("id");
+
+  	// console.log(url);
+  	console.log(menuId);
+
+  	if ( !menuId || !["1","2"].includes(menuId) ) return;
+
+
+  	// fetch data from airtable
+		fetch('https://api.airtable.com/v0/appnTVLyPM29dB1vj/speisenkarte', {
+  	  headers: {
+  	     'Authorization': 'Bearer patFUFr7uNl41NiL0.93a8c0fca63abf0e43781b5347276ca4d9d7ab060030e64f7349176bdd619809'
+  	  }
+  	})
+  	.then(response => response.json())
+  	.then(data => {
+  		// console.log(data.records);
+  		let menu = data.records.find(el => el.fields.id === menuId)?.fields;
+  		let recordId = data.records.find(el => el.fields.id === menuId)?.id;
+
+  		for ( field in menu ) {
+  			if ( field === "id" ) continue;
+  			$(`[field=${field}]`).html(menu[field].replaceAll("\n", "<br>")).attr('rid',recordId);
+  			// console.log(field);
+  		}
+  		// console.log(menu);
+  	})
+  	.catch(error => console.error(error));
+  	
+
+
   	// on contenteditable element change
   	$("[contenteditable=true]").on("input", function() {
   		// console.log($(this).attr("field"));
@@ -68,26 +85,5 @@ function func() {
 				console.error(error);
 			})
   	});
-  }
-
-
-   return;
-	 fetch('https://script.google.com/macros/s/AKfycbzr0KfRrQWjieSuEIHbNTx7KRTJZP9bjYgAzOwKLC2D9ga84R32H4AqmzFS4XgLaNM9/exec', {
-		  method: 'POST',
-		  body: JSON.stringify({name: "John", email: "john@example.com", message: "Hello!"}),
-		  headers: {
-		    // 'Content-Type': 'application/json'
-		    "Content-Type": "text/plain"
-		  }
-		})
-		.then(response => {
-			console.log("ok");
-			// console.log(response);
-			return response.json();
-		})
-		.then(data => {
-			console.log("result");
-			console.log(data)
-		})
-		.catch(error => console.error('Error!', error.message));
+  };
 })();
