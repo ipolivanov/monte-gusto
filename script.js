@@ -42,7 +42,7 @@ function func() {
   	})
   	.then(response => response.json())
   	.then(data => {
-  		// console.log(data.records);
+  		console.log(data.records);
   		let menu = data.records.find(el => el.fields.id === menuId)?.fields;
   		let recordId = data.records.find(el => el.fields.id === menuId)?.id;
 
