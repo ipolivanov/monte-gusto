@@ -46,6 +46,8 @@ function func() {
   		let menu = data.records.find(el => el.fields.id === menuId)?.fields;
   		let recordId = data.records.find(el => el.fields.id === menuId)?.id;
 
+			$('[contenteditable=true]').attr('rid',recordId);
+
   		for ( field in menu ) {
   			if ( field === "id" ) continue;
   			$(`[field=${field}]`).html(menu[field].replaceAll("\n", "<br>")).attr('rid',recordId);

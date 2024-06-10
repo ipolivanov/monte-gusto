@@ -51,7 +51,7 @@ body {
 [contenteditable="true"] {
 	/*display: inline;*/
 /*	width: auto;*/
-	min-width: 10px;
+	min-width: 20px;
 }
 
 .frame {
@@ -314,7 +314,7 @@ table.table {
 .table .block .text {
 	font-family: "Regular";
 	display: inline-block;
-	width: 85%;
+	width: 83%;
 }
 
 .mb {
