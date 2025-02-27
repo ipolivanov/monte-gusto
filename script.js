@@ -37,7 +37,7 @@ function func() {
   	// fetch data from airtable
 		fetch('https://api.airtable.com/v0/appnTVLyPM29dB1vj/speisenkarte', {
   	  headers: {
-  	     'Authorization': 'Bearer patFUFr7uNl41NiL0.93a8c0fca63abf0e43781b5347276ca4d9d7ab060030e64f7349176bdd619809'
+  	     'Authorization': 'Bearer  patFUFr7uNl41NiL0.4ebd70968a90fedc11bcfa0c67d96f29f6b56ee4f8ca991462122ef6138cf9fb'
   	  }
   	})
   	.then(response => response.json())
